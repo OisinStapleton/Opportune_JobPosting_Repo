@@ -19,28 +19,28 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 public class JobPosting {
     @Id
     @GeneratedValue(strategy = IDENTITY)
-
-
-    private int jobID;
+    private int id;
 
     @NotBlank(message = "Title is required")
-    private String jobTitle;
+    @Size(min = 2, max = 100)
+    private String title;
 
-    @NotNull(message = "Description required")
-    private String jobDescription;
+    @NotBlank(message = "Description required")
+    @Size(min = 5, max = 300)
+    private String description;
 
-    @NotNull(message = "Skills required")
-    private String jobSkills;
+    @NotBlank(message = "Skills required")
+    private String skills;
 
-    @Min(value = 20000)
-    @Max(value = 200000)
-    @PositiveOrZero(message = "Only positive numbers are alllowed")
-    private int salaryRange;
+    @Min(value = 20000, message = "Minimum Salary is 20000")
+    @Max(value = 200000, message = "Maximum Salary is 20000")
+    private int salary;
 
     @NotBlank(message = "Location required")
-    private String jobLocation;
+    private String location;
 
-    @PositiveOrZero(message = "Only positive numbers are allowed")
-    private int jobEmployerID;
+    @NotNull(message = "Employer ID required")
+    @Positive(message = "Employer ID must be positive")
+    private int employerId;
 
 }
